@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Music</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
+	<link rel='icon' href=' ' type='image/png' />
+
+	<link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+	<style>
+		body {
+			background: white;
+			overflow-x: hidden;
+		}
+
+		* {
+			font-family: 'Montserrat', sans-serif;
+			user-select: none;
+			-webkit-user-select: none;
+		}
+
+		input {
+			-webkit-user-select: auto;
+		}
+
+		:focus {
+			outline: none;
+		}
+
+		body {
+			background: #282828;
+		}
+
+		#top {
+			position: fixed;
+			top: 0px;
+			left: 0px;
+			width: 100%;
+			height: 400px;
+			z-index: -1;
+			overflow: hidden;
+		}
+
+		#top img {
+			min-width: 100%;
+			min-height: 100%;
+			position: absolute;
+			top: 0px;
+			left: 0px;
+		}
+
+		#p {
+			font-size: 50px;
+			font-weight: bold;
+			z-index: 1;
+			color: white;
+			position: absolute;
+			top: 220px;
+			margin-left: 50px;
+		}
+
+		#b {
+			font-size: 20px;
+			font-weight: bold;
+			z-index: 1;
+			color: white;
+			position: absolute;
+			top: 280px;
+			right: 50px;
+			float: right;
+			background: transparent;
+			border: 2px solid white;
+			border-radius: 1px;
+			padding: 10px;
+			transition: opacity 0.5s;
+		}
+
+		#b:hover {
+			opacity: 0.6;
+		}
+
+		#b span {
+			float: left;
+		}
+
+		#main {
+			position: absolute;
+			top: 400px;
+			left: 0px;
+			z-index: 2;
+			background: #282828;
+			width: 100%;
+			color: white;
+		}
+
+		#main * {
+			margin: 20px 50px 5px 50px;
+		}
+    #main audio {
+      width: 100%;
+      border: 3px solid white;
+      background: white;
+      margin-left: 0px;
+    }
+	</style>
+</head>
+
+<body>
+	<p id="p">Your music</p>
+	<a href="#" download>
+		<button id="b"><span class="material-icons">download</span> Download</button>
+</a>
+
+<div id="top">
+<img src="https://media.istockphoto.com/vectors/sound-waves-motion-sound-wave-abstract-background-vector-id1176100626?k=20&m=1176100626&s=170667a&w=0&h=im5WAvTOvnPqS1EfPjq6MaQtqfJ-K6-3sy6fQjfST4Q="></img>
+</div>
+
+<div id="main">
+<h2>Recently played</h2>
+<audio controls>
+  <source src="https://lb123658.github.io/music/music/elmos_birthday.m4a"></source>
+</audio>
+<h2>Up next...</h2>
+<audio controls></audio>
+<audio controls></audio><audio controls></audio><audio controls></audio><audio controls></audio><audio controls></audio><audio controls></audio><audio controls></audio><audio controls></audio><audio controls></audio><audio controls></audio><audio controls></audio><audio controls></audio><audio controls></audio><audio controls></audio><audio controls></audio><audio controls></audio>
+</div>
+
+<script>
+if (window.location.href == "https://lb123658.github.io/audio" ) {
+} else {
+ document.getElementById("b").innerHTML = "<span class='material-icons'>cloud</span> Offline";
+}
+  </script>
+</body>
+</html>
