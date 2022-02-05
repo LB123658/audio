@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
 <style>
 body {
-background: white;
+background: rgba(0, 0, 0, 0.5);
 overflow-x: hidden;
 }
 * {
@@ -83,6 +83,26 @@ text-decoration: none;
 cursor: pointer;
 text-decoration: underline;
 }
+#tracks {
+position: absolute;
+top: 500px;
+left: 50px;
+width: 500px;
+min-height: 50px;
+background: transparent;
+}
+.song {
+background: rgba(0, 0, 0, 0.3);
+width: 100%;
+height: 50px;
+margin-bottom: 10px;
+border: none;
+text-align: left;
+font-size: 20px;
+}
+.song:hover {
+opacity: 0.8;
+}
 </style>
 </head>
 <body>
@@ -101,12 +121,16 @@ text-decoration: underline;
 
 <div id="tracks"></div>
 
+<!-- audio player -->
+<audio id="audio"><audio>
 <script>
 var cover = document.getElementById("cover");
 var blur = document.getElementById("blur");
 var info = document.getElementById("info");
+var tracks = document.getElementById("tracks");
 var albumtitle = document.getElementById("albumtitle");
 var artist = document.getElementById("artist");
+var audio = document.getElementById("audio");
 
 function load(img,art,title) {
 cover.src = img;
@@ -115,10 +139,20 @@ albumtitle.innerHTML = title;
 artist.innerHTML = art;
 artist.href = "artist/" + art;
 }
+function track(song,songsrc) {
+var x = document.createElement("button");
+x.className = "song";
+x.innerHTML = song;
+x.onclick = function() {audio.src = songsrc; audio.play();};
+tracks.appendChild(x);
+}
 
-document.body.onresize = function() {info.style.width = window.innerWidth - 400 + "px";};
+document.body.onresize = function() {info.style.width = window.innerWidth - 450 + "px"; tracks.style.width = window.innerWidth - 100 + "px";};
+document.body.onload = function() {info.style.width = window.innerWidth - 450 + "px"; tracks.style.width = window.innerWidth - 100 + "px";};
 
 load("https://lh3.googleusercontent.com/oocyOqdqfDMdTwPUF1p7ws6F22Cq1CJ_HjvMILe-oUBH-vjKzq7u7zwYDbwbHvlRW9aKaQX5fjxQp4Eo3Z0XISWrwTa6zg9A9W8BhZPXm4_fBn5Yea7JvcK9EBy-CJFSiQ=w1280","Big Mickeys","McDonalds the 2nd");
+
+track("McDonalds the 2nd","https://drive.google.com/uc?authuser=0&id=1hoGrTZwCZCPba8iybBQrR01eeZumzLTU&export=download");
 </script>
 </body>
 </html>
