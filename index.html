@@ -103,12 +103,24 @@ font-size: 20px;
 .song:hover {
 opacity: 0.8;
 }
+#line {
+position: fixed;
+top: 70px;
+left: 0px;
+height: 5px;
+width: 100%;
+z-index: 1;
+background: white;
+}
 </style>
 </head>
 <body>
 <div id="top">
 <button><span class="material-icons">graphic_eq</span> Music</button>
 </div>
+
+<!-- duration line -->
+<div id="line"></div>
 
 <!-- music part -->
 <img id="cover"></img>
@@ -131,6 +143,7 @@ var tracks = document.getElementById("tracks");
 var albumtitle = document.getElementById("albumtitle");
 var artist = document.getElementById("artist");
 var audio = document.getElementById("audio");
+var line = document.getElementById("line");
 
 function load(img,art,title) {
 cover.src = img;
@@ -143,7 +156,8 @@ function track(song,songsrc) {
 var x = document.createElement("button");
 x.className = "song";
 x.innerHTML = song;
-x.onclick = function() {audio.src = songsrc; audio.play();};
+x.onclick = function() {audio.src = songsrc; audio.play(); setInterval(function () {line.style.width = ((audio.currentTime / audio.duration) * 100) + "%"}, 10); };
+x.ondblclick = function() {audio.pause(); };
 tracks.appendChild(x);
 }
 
