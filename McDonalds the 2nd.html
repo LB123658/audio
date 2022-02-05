@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Music</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+<link rel='icon' href='https://lh3.googleusercontent.com/obLUyhMTTGBKcDYmekx_RgUPQOARMYKsd8IBHZySGLGffT1jZgz85yADWm72oAwq16QKWTfkUHTBbD8bVZeXt94=w16383' type='image/png'/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+<style>
+body {
+background: rgba(0, 0, 0, 0.5);
+overflow-x: hidden;
+}
+* {
+font-family: 'Roboto', sans-serif;
+user-select: none;
+-webkit-user-select: none;
+color: white;
+}
+input {
+-webkit-user-select: auto;
+}
+:focus {
+outline: none;
+}
+#top {
+position: fixed;
+top: 0px;
+left: 0px;
+height: 70px;
+width: 100%;
+background: rgba(0, 0, 0, 0.5);
+}
+#top button {
+height: 50px;
+margin: 10px;
+background: transparent;
+border: none;
+font-size: 25px;
+cursor: pointer;
+}
+button span {
+float: left;
+transform: translate(0px,2px);
+padding-right: 10px;
+}
+#cover {
+position: absolute;
+top: 150px;
+left: 50px;
+height: 300px;
+width: 300px;
+}
+#blur {
+position: fixed;
+top: 0px;
+left: 0px;
+height: 100%;
+width: 100%;
+z-index: -1;
+filter: blur(35px);
+}
+#info {
+background: rgba(0, 0, 0, 0.3);
+position: absolute;
+top: 150px;
+left: 400px;
+height: 300px;
+width: 400px;
+}
+#info * {
+margin-left: 50px;
+}
+#info h2 {
+font-size: 5vw;
+}
+#info a {
+font-size: 2vw;
+text-decoration: none;
+}
+#info a:hover {
+cursor: pointer;
+text-decoration: underline;
+}
+#tracks {
+position: absolute;
+top: 500px;
+left: 50px;
+width: 500px;
+min-height: 50px;
+background: transparent;
+}
+.song {
+background: rgba(0, 0, 0, 0.3);
+width: 100%;
+height: 50px;
+margin-bottom: 10px;
+border: none;
+text-align: left;
+font-size: 20px;
+}
+.song:hover {
+opacity: 0.8;
+}
+#line {
+position: fixed;
+top: 70px;
+left: 0px;
+height: 5px;
+width: 100%;
+z-index: 1;
+background: white;
+}
+#control {
+position: absolute;
+top: 375px;
+left: 275px;
+height: 50px;
+width: 50px;
+border-radius: 50%;
+background: rgba(0, 0, 0, 0.6);
+border: 2px solid white;
+cursor: pointer;
+visibility: hidden;
+}
+</style>
+</head>
+<body>
+<div id="top">
+<a href="https://lb123658.github.io/audio/">
+<button><span class="material-icons">graphic_eq</span> Music</button></a>
+</div>
+
+<!-- duration line -->
+<div id="line"></div>
+
+<!-- music part -->
+<img id="cover" onmouseover="show()" onmouseout="hide()"></img>
+<img id="blur"></img>
+<button id="control" onmouseover="show()" onclick="playTrack()"><span class="material-icons" style="padding:0px;transform:scale(1.5);float:none;" id="subcontrol">play_arrow</span></button>
+
+<div id="info">
+<h2 id="albumtitle"></h2>
+<a href="#" id="artist"></a>
+</div>
+
+<div id="tracks"></div>
+
+<!-- audio player -->
+<audio id="audio"><audio>
+<script>
+var cover = document.getElementById("cover");
+var blur = document.getElementById("blur");
+var info = document.getElementById("info");
+var tracks = document.getElementById("tracks");
+var albumtitle = document.getElementById("albumtitle");
+var artist = document.getElementById("artist");
+var audio = document.getElementById("audio");
+var line = document.getElementById("line");
+var cont = document.getElementById("control");
+var subcont = document.getElementById("subcontrol");
+
+function show() {
+cont.style.visibility = "visible";
+}
+function hide() {
+cont.style.visibility = "hidden";
+}
+
+function load(img,art,title) {
+cover.src = img;
+blur.src = img;
+albumtitle.innerHTML = title;
+artist.innerHTML = art;
+artist.href = "artist/" + art;
+}
+function track(song,songsrc) {
+var x = document.createElement("button");
+x.className = "song";
+x.innerHTML = song;
+x.onclick = function() {audio.src = songsrc; audio.play(); setInterval(function () {line.style.width = ((audio.currentTime / audio.duration) * 100) + "%"}, 10); };
+x.ondblclick = function() {audio.pause(); };
+tracks.appendChild(x);
+}
+
+function playTrack() {
+  if (audio.paused) {
+    audio.play();
+    subcontrol.innerHTML = "pause";
+  } else {
+    audio.pause();
+    subcontrol.innerHTML = "play_arrow";
+  }
+}
+
+document.body.onresize = function() {info.style.width = window.innerWidth - 450 + "px"; tracks.style.width = window.innerWidth - 100 + "px";};
+document.body.onload = function() {info.style.width = window.innerWidth - 450 + "px"; tracks.style.width = window.innerWidth - 100 + "px";};
+
+
+load("https://lh3.googleusercontent.com/oocyOqdqfDMdTwPUF1p7ws6F22Cq1CJ_HjvMILe-oUBH-vjKzq7u7zwYDbwbHvlRW9aKaQX5fjxQp4Eo3Z0XISWrwTa6zg9A9W8BhZPXm4_fBn5Yea7JvcK9EBy-CJFSiQ=w1280","Big Mickeys","McDonalds the 2nd");
+
+track("McDonalds the 2nd","https://drive.google.com/uc?authuser=0&id=1hoGrTZwCZCPba8iybBQrR01eeZumzLTU&export=download");
+</script>
+</body>
+</html>
