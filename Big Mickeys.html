@@ -129,7 +129,7 @@ titl.innerHTML = title;
 function load(artist) {
 var x = document.createElement("div");
 x.className = "artist";
-x.innerHTML = "<img src='https://lb123658.github.io/audio/images/" + artist + ".jpeg'></img><br><p>" + artist + "</p>";
+x.innerHTML = "<img src=\"https://lb123658.github.io/audio/images/" + artist + ".jpeg\"></img><br><p>" + artist + "</p>";
 x.onclick = function() {window.open("https://lb123658.github.io/audio/" + artist,"_self")};
 tracks.appendChild(x);
 }
