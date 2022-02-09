@@ -18,7 +18,7 @@ function showButton() {
   button.onclick = function() {showHistory(); };
   document.body.appendChild(button);
 }
-
+showButton();
 function showHistory() {
   div.innerHTML = "<p style='width:100%;text-align:center;color:white;font-size:3vw;'>" + localStorage.getItem("music_data").split("null")[1] + "</p>";
 }
